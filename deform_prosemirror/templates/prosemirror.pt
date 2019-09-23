@@ -1,0 +1,11 @@
+<div tal:define="oid oid|field.oid; name name|field.name;"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    tal:omit-tag="">
+
+  <div id="${oid}" name="${name}" class='tinymce form-control' tal:content="structure cstruct"></div>
+    <p>voith here</p>
+  <div id="${oid}-prosemirror" class="prosemirror"></div>
+
+  <script type="text/javascript">
+  </script>
+</div>

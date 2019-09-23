@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="${request.locale_name}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="pyramid web application">
+    <meta name="author" content="Pylons Project">
+
+    <tal:tag repeat="tag widget_js_tags" tal:replace="structure tag" />
+
+  </head>
+
+  <body>
+
+    <div class="starter-template">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+              <tal:form replace="structure rendered_form" />
+          </div>
+        </div>
+
+        <div class="row" tal:condition="reflected_markdown">
+          <div class="col-md-12">
+              <h2>Example serialized output:</h2>
+              <pre tal:content="reflected_markdown"></pre>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+</html>
