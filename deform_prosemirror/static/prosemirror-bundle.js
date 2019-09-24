@@ -56,37 +56,34 @@ const {
 //import {schema, defaultMarkdownParser,
 //        defaultMarkdownSerializer} from "prosemirror-markdown"
 //import {exampleSetup} from "prosemirror-example-setup"
+//class MarkdownView {
+//  constructor(target, content) {
+//    this.textarea = target.appendChild(document.createElement("textarea"))
+//    this.textarea.value = content
+//  }
+//
+//  get content() { return this.textarea.value }
+//  focus() { this.textarea.focus() }
+//  destroy() { this.textarea.remove() }
+//}
+//
 
-
-class MarkdownView {
-  constructor(target, content) {
-    this.textarea = target.appendChild(document.createElement("textarea"));
-    this.textarea.value = content;
-  }
-
-  get content() {
-    return this.textarea.value;
-  }
-
-  focus() {
-    this.textarea.focus();
-  }
-
-  destroy() {
-    this.textarea.remove();
-  }
-
-}
 
 class ProseMirrorView {
-  constructor(target, content) {
+  constructor(target, content, ViewClass) {
     this.view = new EditorView(target, {
       state: EditorState.create({
         doc: defaultMarkdownParser.parse(content),
         plugins: exampleSetup({
           schema
         })
-      })
+      }),
+      nodeViews: {
+        paragraph(node, view) {
+          return new ViewClass(node, view);
+        }
+
+      }
     });
   }
 
@@ -104,20 +101,8 @@ class ProseMirrorView {
 
 }
 
-let place = document.querySelector("#editor");
-let view = new ProseMirrorView(place, document.querySelector("#content").value);
-document.querySelectorAll("input[type=radio]").forEach(button => {
-  button.addEventListener("change", () => {
-    if (!button.checked) return;
-    let View = button.value == "markdown" ? MarkdownView : ProseMirrorView;
-    if (view instanceof View) return;
-    console.log(view.content);
-    let content = view.content;
-    view.destroy();
-    view = new View(place, content);
-    view.focus();
-  });
-});
+window.ProseMirrorView = ProseMirrorView;
+window.defaultMarkdownSerializer = defaultMarkdownSerializer;
 
 },{"prosemirror-example-setup":66,"prosemirror-markdown":71,"prosemirror-model":73,"prosemirror-schema-list":74,"prosemirror-state":75,"prosemirror-view":77}],2:[function(require,module,exports){
 //Copyright (C) 2012 Kory Nunn

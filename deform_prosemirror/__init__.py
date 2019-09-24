@@ -12,7 +12,8 @@ def includeme(config):
     default_resources.update({
         "prosemirror": {
             None: {
-                "js": ("deform_prosemirror:static/prosemirror-bundle.js")
+                "js": ("deform_prosemirror:static/prosemirror-bundle.js", ),
+                "css": ("deform_prosemirror:static/prosemirror.css", ),
             }
         }
     })

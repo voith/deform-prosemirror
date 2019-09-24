@@ -5,8 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="pyramid web application">
-    <meta name="author" content="Pylons Project">
-
+    <meta name="author" content="Tokenmarket">
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
+    <tal:tag repeat="tag widget_css_tags" tal:replace="structure tag" />
     <tal:tag repeat="tag widget_js_tags" tal:replace="structure tag" />
 
   </head>
@@ -18,13 +23,6 @@
         <div class="row">
           <div class="col-md-12">
               <tal:form replace="structure rendered_form" />
-          </div>
-        </div>
-
-        <div class="row" tal:condition="reflected_markdown">
-          <div class="col-md-12">
-              <h2>Example serialized output:</h2>
-              <pre tal:content="reflected_markdown"></pre>
           </div>
         </div>
 

@@ -1,4 +1,3 @@
-from pyramid.httpexceptions import HTTPFound
 from pyramid.view import view_config
 from pyramid_deform import CSRFSchema
 
@@ -6,16 +5,6 @@ import deform
 import colander
 
 from .widget import ProseMirrorWidget
-
-
-DEFAULT_TEXT="""
-# Welcome to ProseMirror demo
-This is a [ProseMirror](http://prosemirror.net) test widget.
-## Instructions
-* Edit this text
-* Press save
-* See reflected Markdown results
-"""
 
 
 def get_widget_js_tags(request, form):
@@ -42,20 +31,21 @@ def get_widget_css_tags(request, form):
     return css_tags
 
 
-class MySchema(CSRFSchema):
+class EditorSchema(CSRFSchema):
     """Username-less registration form schema."""
 
     test_text = colander.SchemaNode(
         colander.String(),
-        title='ProseMirror demo widget',
-        default=DEFAULT_TEXT,
-        widget=ProseMirrorWidget())
+        title='',
+        default="",
+        widget=ProseMirrorWidget()
+    )
 
 
 @view_config(route_name='home', renderer='templates/home.pt')
 def home(request):
 
-    schema = MySchema().bind(request=request)
+    schema = EditorSchema().bind(request=request)
 
     # Manage <head> JS and CSS for Deform widgets
     resource_registry = deform.widget.ResourceRegistry()

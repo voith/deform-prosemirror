@@ -2,10 +2,33 @@
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     tal:omit-tag="">
 
-  <div id="${oid}" name="${name}" class='tinymce form-control' tal:content="structure cstruct"></div>
-    <p>voith here</p>
-  <div id="${oid}-prosemirror" class="prosemirror"></div>
+  <div id="${oid}" class='tinymce form-control'></div>
+  <input id="${oid}-prosemirror"  name="${name}" type="hidden" class="prosemirror" value="${cstruct}">
 
   <script type="text/javascript">
+    (function() {
+
+        deform.addCallback('${oid}', function(oid) {
+            console.log('entered callback deform');
+            class ParagraphView {
+
+              update(node) {
+                let content = _prosemirrorView.content;
+                let input = document.getElementById( oid + "-prosemirror");
+                input.value = content;
+              }
+            }
+
+            let place = document.getElementById(oid);
+            let view = new ProseMirrorView(
+                place,
+                document.getElementById(oid + "-prosemirror").value,
+                ParagraphView
+            );
+            // Hack
+            window._prosemirrorView = view;
+        });
+
+    })();
   </script>
 </div>
