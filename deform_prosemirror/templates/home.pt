@@ -11,6 +11,12 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous">
     </script>
+
+    <link
+       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+       rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+       crossorigin="anonymous">
+
     <tal:tag repeat="tag widget_css_tags" tal:replace="structure tag" />
     <tal:tag repeat="tag widget_js_tags" tal:replace="structure tag" />
 
