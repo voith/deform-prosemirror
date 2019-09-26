@@ -13,7 +13,7 @@ In order to rebuild library run:
 
 Run demo locally::
 
-    git clone git@github.com:miohtama/deform_prosemirror.git
+    git clone git@github.com:voith/deform-prosemirror.git
     virtualenv venv
     source venv/bin/activate
     pip install -e .
