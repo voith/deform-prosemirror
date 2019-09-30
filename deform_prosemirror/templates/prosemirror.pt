@@ -2,7 +2,7 @@
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     tal:omit-tag="">
 
-  <div id="${oid}" class="border border-success"></div>
+  <div id="${oid}" class="border border-dark"></div>
   <input id="${oid}-prosemirror"  name="${name}" type="hidden" value="${cstruct}">
 
   <script type="text/javascript">
